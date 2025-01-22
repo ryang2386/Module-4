@@ -4,16 +4,14 @@ function toggleMode() {
   const body = document.querySelector('body');
   let isDark = false;
   toggleBtn.addEventListener('click', function(event) {
-    if (isDark) {
+    if (isDark === false) {
       body.classList.remove('light');
       localStorage.setItem('mode', 'dark');
       isDark = true;
-      console.log(isDark);
     } else {
-      body.classList.add('dark');
-      body.classList.remove('light');
-      localStorage.setItem('mode', 'dark');
-      console.log(isDark);
+      body.classList.add('light');
+      localStorage.setItem('mode', 'light');
+      isDark = false;
     }
   });
 }
