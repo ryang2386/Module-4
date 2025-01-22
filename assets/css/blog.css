@@ -5,6 +5,7 @@
 /*
   Tags
 */
+
 a {
     text-decoration: none;
   }
@@ -39,6 +40,7 @@ a {
     position: fixed;
     inset: 0;
     top: calc(100% - 12rem);
+    text-align: center;
   }
   
   li {
@@ -78,7 +80,28 @@ a {
   .light a {
     color: var(--dark);
   }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
   
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    border-radius: 50%;
+  }
+
   /*
     IDs
   */
