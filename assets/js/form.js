@@ -26,7 +26,6 @@ const formSubmission = function (event) {
         content: contentText,
     };
     storeLocalStorage(formArray);
-    // redirectPage('blog.html'); 
 };
    
         
@@ -34,4 +33,3 @@ const formSubmission = function (event) {
 
 // TODO: Add an event listener to the form on submit. Call the function to handle the form submission.
 formInput.addEventListener('submit', formSubmission);
-// console.log('submitted');
