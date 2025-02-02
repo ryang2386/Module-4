@@ -9,17 +9,11 @@ const formSubmission = function (event) {
     const titleText = document.querySelector('#title').value.trim();
     const contentText = document.querySelector('#content').value.trim();
     
-    if (usernameText.value === '' || titleText.value === '' || contentText.value === '') {
-        const errorMsg = document.querySelector('#error');
-        errorMsg.textContent = "Please complete the form.";
-        console.log(errorMsg);
-        return;
+    if (usernameText === '' || titleText === '' || contentText === '') {
+        const errorMsg = document.getElementById('error');
+        errorMsg.textContent = "Please complete the form."
+        return errorMsg;
     }
-    
-
-    // setTimeout(function(){
-    //     errorMsg.textContent = '';
-    // },4000);
 
     const newBlog = {
         username: usernameText,
