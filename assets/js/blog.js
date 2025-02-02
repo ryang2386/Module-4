@@ -4,15 +4,13 @@ var backBtn = document.querySelector('#back');
 const formArray = JSON.parse(localStorage.getItem('formArray'));
 const titleText = formArray.title;
 const contentText = formArray.content;
-// console.log(titleText);
-// console.log(contentText);
+
 // TODO: Create a function that builds an element and appends it to the DOM
-function appendDOM(title, content) {
+function appendDOM(title, content, parentElement) {
   const contentEl = document.createElement('p');
-  const titleEl = document.querySelector('h2');
+  const titleEl = document.createElement('h2');
   contentEl.textContent = content;
-    titleEl.textContent = title;
-    const parentElement = document.querySelector('article');
+  titleEl.textContent = title;
     parentElement.appendChild(contentEl);
     parentElement.appendChild(titleEl);
 }
@@ -25,25 +23,39 @@ function NoBlogPosts(blog) {
     const noPosts = document.createElement('p');
     noPosts.textContent = 'No blog posts yet!';
     const mainEl = document.querySelector('main');
-    // console.log(noPosts);
     mainEl.insertBefore(noPosts, mainEl.firstChild);
   }
 }
 
 // NoBlogPosts(formArray);
 // TODO: Create a function called `renderBlogList` that renders the list of blog posts if they exist. If not, call the no posts function.
-function renderBlogList(blog) {
-  if (blog.title !== '' && blog.content !== '') {
-    appendDOM(blog.title, blog.content);
+function renderBlogList() {
+
+  if (formArray.length === 0) {
+    NoBlogPosts(formArray);
+    return;
   } else {
-    NoBlogPosts(blog);
+    const articles = document.querySelectorAll('article');
+    articles.forEach((article, index) => {
+      if (index < formArray.length) {
+        const newPost = formArray[index];
+        appendDOM(newPost.title, newPost.content, article);
+      }
+    })
+      
+    };
   }
-}
 
 // TODO: Call the `renderBlogList` function
-renderBlogList(formArray);
+renderBlogList();
 
 // TODO: Redirect to the home page using the `redirectPage` function found in logic.js when the back button is clicked
 backBtn.addEventListener('click', function() {
-  redirectPage('../index.html');
+  let redirectURL = '';
+
+  const redirectPage = function (url) {
+  redirectURL = url;
+  location.assign(url);
+    };
+  redirectPage('index.html');
 });

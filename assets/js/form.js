@@ -9,27 +9,38 @@ const formSubmission = function (event) {
     const titleText = document.querySelector('#title').value.trim();
     const contentText = document.querySelector('#content').value.trim();
     
-    if (!usernameText.value == "" || titleText.value == "" || contentText.value == "") {
+    if (usernameText.value === '' || titleText.value === '' || contentText.value === '') {
         const errorMsg = document.querySelector('#error');
         errorMsg.textContent = "Please complete the form.";
+        console.log(errorMsg);
+        return;
+    }
     
 
-    setTimeout(function(){
-        errorMsg.textContent = '';
-    },4000);
+    // setTimeout(function(){
+    //     errorMsg.textContent = '';
+    // },4000);
 
-    return;
-}
-    const formArray = {
+    const newBlog = {
         username: usernameText,
         title: titleText,
         content: contentText,
     };
+    let formArray = JSON.parse(localStorage.getItem('formArray')) || [];
+    formArray.push(newBlog);
     storeLocalStorage(formArray);
+    let redirectURL = '';
+
+    const redirectPage = function (url) {
+    redirectURL = url;
+    location.assign(url);
+    };
+
+    redirectPage('blog.html');
 };
-   
-        
-    
+
+
+
 
 // TODO: Add an event listener to the form on submit. Call the function to handle the form submission.
 formInput.addEventListener('submit', formSubmission);

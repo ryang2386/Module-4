@@ -37,9 +37,9 @@ function storeLocalStorage (data) {
 
 // ! Use the following function whenever you need to redirect to a different page
 
-let redirectURL = '';
+// let redirectURL = '';
 
-const redirectPage = function (url) {
-  redirectURL = url;
-  location.assign(url);
-};
+// const redirectPage = function (url) {
+//   redirectURL = url;
+//   location.assign(url);
+// };
