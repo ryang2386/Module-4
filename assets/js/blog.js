@@ -6,13 +6,16 @@ const titleText = formArray.title;
 const contentText = formArray.content;
 
 // TODO: Create a function that builds an element and appends it to the DOM
-function appendDOM(title, content, parentElement) {
+function appendDOM(title, content, username, parentElement) {
   const contentEl = document.createElement('p');
   const titleEl = document.createElement('h2');
+  const usernameEl = document.createElement('text');
   contentEl.textContent = content;
   titleEl.textContent = title;
+  usernameEl.textContent = 'Created by: ' + username;
     parentElement.appendChild(contentEl);
     parentElement.appendChild(titleEl);
+    parentElement.appendChild(usernameEl);
 }
 
 // appendDOM(titleText, contentText);
@@ -24,6 +27,7 @@ function NoBlogPosts(blog) {
     noPosts.textContent = 'No blog posts yet!';
     const mainEl = document.querySelector('main');
     mainEl.insertBefore(noPosts, mainEl.firstChild);
+    return;
   }
 }
 
@@ -39,7 +43,8 @@ function renderBlogList() {
     articles.forEach((article, index) => {
       if (index < formArray.length) {
         const newPost = formArray[index];
-        appendDOM(newPost.title, newPost.content, article);
+        console.log(newPost);
+        appendDOM(newPost.title, newPost.content, newPost.username, article);
       }
     })
       
